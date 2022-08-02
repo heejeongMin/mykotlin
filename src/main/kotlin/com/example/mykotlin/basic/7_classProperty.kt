@@ -1,4 +1,3 @@
-package com.example.mykotlin
 
 //클래스는 Class 라는 키워드를 사용해서 만든다
 //생성자를 만들때는 constructor 라는 키워드를 사용한다. constructor는 주로 생략한다.

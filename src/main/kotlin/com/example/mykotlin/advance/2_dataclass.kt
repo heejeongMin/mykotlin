@@ -1,4 +1,4 @@
-package com.example.mykotlin
+package com.example.mykotlin.advance
 
 //데이터 클래스는 데이터를 보관하거나 전달하기 위한 용도 이다. DTO같은 역할
 //data라는 키워드를 사용하여 생서한다.
@@ -17,7 +17,7 @@ fun main (){
     val justPerson2 = JustPerson(name ="tony", age = 12)
 
     println(justPerson1 == justPerson2) //false
-    println(justPerson1.toString()) // com.example.mykotlin.JustPerson@4c873330
+    println(justPerson1.toString()) // com.example.mykotlin.advance.JustPerson@4c873330
 
 
     val person1 = Person(name = "tony", age = 12)

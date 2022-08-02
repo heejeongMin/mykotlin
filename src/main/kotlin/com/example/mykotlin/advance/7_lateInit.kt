@@ -1,44 +1,32 @@
-class HelloBot {
+//가변 프로퍼티에대한 지연 초기화가 필요한 경우 lateInit을 사용한다.
+//프레임워크나 라이브러리에서 불변객체에 대한 초기화를 제공하지 않아서 가변 프로퍼티를 꼭 써야하고 지연 초기화가 필요할때 사용할 수 있다.
 
-    var greeting: String? = null
-    fun sayHello() = println(greeting)
+class Test {
+    // 초기화를 해주지 않아도 lateinit을 사용하면 컴파일 에러가 나지 않는다. var대산 val을 사용하면 컴파일 오류가 남
+    // lateinit을 사용하면 nonnull이다.
+    lateinit var text: String
+
+    fun printText() { //초기화를 먼저 해주지 않고 사용하게 되면 런타임 에러가 나니 주의
+        if(this::text.isInitialized) { //isInitialized는 클래스 내부에서는 사용가능한데 외부에서는 사용할 수 없다.
+            println("초기화됨")
+        } else {
+            text = "안녕하세요"
+        }
+
+        println(text)
+    }
+
+    //initalized를 외부에서 사용하고 싶다면 getter로 한번 감싸주어야한다.
+    val textInitialized: Boolean
+        get() = this::text.isInitialized
 }
-
-fun getHello() = "안녕하세요"
 
 fun main() {
-    val helloBot = HelloBot()
+    val test = Test()
+    println(test.textInitialized) //false
+    test.printText() // 안녕하세요
 
-    helloBot.greeting = getHello() // 지연할당
-    helloBot.sayHello() // 안녕하세요
-
-    // 초기화는 한번만 되어서 초기화 로직 실행이 한번만 호출된 것을 볼 수 있따.
-    val helloBot2 = HelloBot2()
-/*    helloBot2.sayHello() // 초기화 로직 실행 안녕하세요
-    helloBot2.sayHello() // 안녕하세요
-    helloBot2.sayHello() // 안녕하세요*/
-
-    for (i in 1 .. 5) {
-        Thread {
-            helloBot2.sayHello() // 병렬로 수행해도 처음 에만 초기화 로직 실행이 찍힌다
-   다    }.start()
-    }
-
-}
-
-// 위코드의 문제점은 var greeting이 가변변수로 선언하게되면 위험성이 있기때문에 될수 있으면 불변으로 유지하는 것이 좋다.
-// 지연할당을 사용하게 되면 가변을 허용해야하기 때문에 이런경우 바이레이지를 사용할 수 있다.
-
-class HelloBot2 {
-    // by lazy를 사용하면 불변을 사용하면서 초기화를 지연할 수 있다. var 사용할 수 없음
-    // 사용시점에 1회만 작동한다.
-    //만일 by lazy(LazyThreadSafteyMode.NONE) 으로 설정하게되면 초기화 로직 수행 출력이 여러번 출력이 되는것을 볼 수 있는데 실행 할 때마다 호출 횟수가 일관성 잇지 않다
-    //by lazy의 기본 mode 값은 LazyThreadSafteyMode.SYNCHRONIZED 이다.
-    //멀티스레드에서도 동기화가 필요하지 않다면 PUBLICATION 모드를 사용할 수 있다. (동기화를 위한 오버헤드를 줄이고 싶다면)
-    val greeting: String by lazy {
-        println("초기화 로직 실행")
-        getHello()
-    }
-    fun sayHello() = println(greeting)
+    println(test.textInitialized) //true
+    test.printText() // 초기화됨 안녕하세요
 
 }

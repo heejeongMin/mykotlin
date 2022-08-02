@@ -1,16 +1,28 @@
+//부수작업을 실행하거나, 전달받은 객체를 그대로 전달하고 싶을때 사용하는것이 also
 
-// with은 결과 반환없이 수신객체를 사용해서 다른 함수롤 호출하고 싶을때 사용할 수 있다.
-// let과 run처럼 함수의 결과를 반환하는 것도 가능
-fun main() {
 
-    val str = "안녕하세요"
+class User(val name : String, val password: String ) {
 
-    with(str) {
-        println("legnth = $length") // legnth = 5
-    }
+     fun validate() {
+         if(name.isNotEmpty() && password.isNotEmpty()) {
+             println("검증 성공!")
+         } else {
+             println("검증 실패!")
+         }
+     }
 
-    val length = with(str) {
-         length
-    }
-    println(length) // 5
-}
+    fun printName() = println(name)
+
+ }
+
+ fun main() {
+
+     val user : User = User(name = "tony", password = "1234")
+     user.validate()
+
+     // 위 코드를 이렇게 바꿀 수 있다.
+     User(name = "tony", password = "1234").also {
+         it.validate()
+         it.printName()
+     }
+ }

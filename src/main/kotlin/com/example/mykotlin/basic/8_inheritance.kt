@@ -1,4 +1,3 @@
-package com.example.mykotlin
 
 //자바의 모든 클래스의 조상은 Object이고 코틀린은 Any 이다.
 //코틀린의 클래스는 자바와 다르게 기본적으로 final클래스로, 기본적으로 상속을 막고 있다.

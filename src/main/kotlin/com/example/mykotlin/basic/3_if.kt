@@ -1,9 +1,9 @@
 fun main(){
 
     //if..else 식
-    val job = "Software Developer"
+    val job = "Software com.example.mykotlin.advance.Developer"
 
-    if (job == "Software Developer") {
+    if (job == "Software com.example.mykotlin.advance.Developer") {
         println("개발자")
     } else {
         println("개발자 아님")

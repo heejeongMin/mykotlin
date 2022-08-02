@@ -1,4 +1,4 @@
-import com.example.mykotlin.BackendDeveloper
+package com.example.mykotlin.advance
 
 //실드클래스란
 //상위 클래스 또는 인터페이스에서 하위클래스에 대한 정의를 제한하는 것
@@ -73,7 +73,7 @@ data class FrontendDeveloper2(override val name: String) : Developer2() {
 
 /*
 //하위 클래스가 하나 더 생기면 when식에서 컴파일러가 알아치리고 추가하라고 한다.
-//object OtherDeveloper : Developer2 {
+//object OtherDeveloper : com.example.mykotlin.advance.Developer2 {
 //    override val name: String = "익명"
 //    override fun code(language: String) {
 //
@@ -89,8 +89,8 @@ fun main(){
     val frontendDeveloper = FrontendDeveloper(name = "카즈야")
     DeveloperPool.add(frontendDeveloper)
 
-    println(DeveloperPool.get("토니")) // BackedDeveloper(name=토니)\
-    println(DeveloperPool.get("카즈야")) // FrontendDeveloper(name=카즈야)
+    println(DeveloperPool.get("토니")) // com.example.mykotlin.advance.BackedDeveloper(name=토니)\
+    println(DeveloperPool.get("카즈야")) // com.example.mykotlin.advance.FrontendDeveloper(name=카즈야)
 
 
 }

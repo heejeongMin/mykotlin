@@ -1,3 +1,5 @@
+package com.example.mykotlin.advance
+
 import java.time.LocalDateTime
 
 // object 키워드를 사용한다. 해당 키워드를 사용하면 싱글톤 객체를 생성할 수 있따.
@@ -29,7 +31,7 @@ class MyClass {
 
     companion object MyCompanion { //동반객체에 이름을 붙일수도 있고, 안 붙일수도 있다. MyCompanion생략 가능
         val a = 1234
-        fun newInstance() = MyClass() //MyClass 가 직접 생성자로 생성하지 못하게 하기 윔
+        fun newInstance() = MyClass() //com.example.mykotlin.advance.MyClass 가 직접 생성자로 생성하지 못하게 하기 윔
     }
 
 }
@@ -52,15 +54,15 @@ fun main() {
 
     //동반객체 사용. 클래스 한정자로 사용할 수도 잇고
     println(MyClass.a) // 1234
-    println(MyClass.newInstance()) //MyClass@214c265e
+    println(MyClass.newInstance()) //com.example.mykotlin.advance.MyClass@214c265e
 
     //Companion키워드를 넣을수도 있지만 생략이 가능함으로 굳이 사용할 필요는 없다
 /*
-    println(MyClass.Companion.a)
-    println(MyClass.Companion.newInstance())
+    println(com.example.mykotlin.advance.MyClass.Companion.a)
+    println(com.example.mykotlin.advance.MyClass.Companion.newInstance())
 */
 
     //companion객체에 이름이 있는 경우 이름을 적어주어야하지만 이역시 생략 가능하다
-    println(MyClass.MyCompanion.a)
-    println(MyClass.MyCompanion.newInstance())
+    println(MyClass.a)
+    println(MyClass.newInstance())
 }
