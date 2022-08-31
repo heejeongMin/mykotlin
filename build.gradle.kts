@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.12.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
+    kotlin("kapt") version "1.7.10"
 }
 
 group = "com.example"
@@ -16,14 +17,21 @@ repositories {
 }
 
 dependencies {
+    kapt("org.springframework.boot:spring-boot-autoconfigure-processor")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
+
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-test")
+//   web, reactive web은 둘이 공존할 수 없다. 둘다 들어가게 되면 web이 우선되게 된다.
+//    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.0")
 
+
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.0")
 }
 
 tasks.withType<KotlinCompile> {
