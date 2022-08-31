@@ -22,6 +22,6 @@ class HelloController {
     fun sayHello () {
         val hello = "hello".encrypt()
         println(hello)
-       println(hello.decryptt())
+       println(hello.decrypt())
     }
 }
