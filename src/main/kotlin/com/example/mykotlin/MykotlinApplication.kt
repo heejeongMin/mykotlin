@@ -18,10 +18,10 @@ fun main(args: Array<String>) {
 @RestController
 class HelloController {
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     fun sayHello () {
         val hello = "hello".encrypt()
         println(hello)
-       println(hello.decrypt())
+        println(hello.decryptt())
     }
 }

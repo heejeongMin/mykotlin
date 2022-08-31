@@ -32,9 +32,10 @@ class EncryptConfig(applicationProperties: ApplicationProperties) {
 }
 
 fun String.encrypt() =
-    Base64.getEncoder().encode(EncryptConfig.cipher.doFinal(this.toByteArray()))
+    String(Base64.getEncoder().encode(EncryptConfig.cipher.doFinal(this.toByteArray())))
 
 fun String.decrypt() = String(Base64.getDecoder().decode(this.toByteArray()))
-fun String.decryptt() = String(EncryptConfig.decryptCipher.doFinal(Base64.getDecoder().decode(this.toByteArray())))
+fun String.decryptt() =
+    String(EncryptConfig.decryptCipher.doFinal(Base64.getDecoder().decode(this.toByteArray())))
 
 
